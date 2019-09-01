@@ -1,5 +1,6 @@
 <template>
   <div class="body">
+<!--    <top-info/>-->
     <left-menu/>
     <right-content/>
   </div>
@@ -7,12 +8,14 @@
 
 <script>
   // imort {scrollbar} from 'element-ui'
+  // import TopInfo from './TopInfo'
   import LeftMenu from './LeftMenu'
   import RightContent from './RightContent'
   // import LeftNav from './LeftNav'
   export default {
     name: 'layout',
     components: {
+      // TopInfo,
       LeftMenu,
       RightContent
       // LeftNav

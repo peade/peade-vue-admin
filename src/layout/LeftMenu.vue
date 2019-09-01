@@ -152,5 +152,6 @@
   }
   .aside-menu{
     min-height: 100%;
+    /*padding-top: 50px;*/
   }
 </style>

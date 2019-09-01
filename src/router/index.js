@@ -12,7 +12,7 @@ let router = new Router({
     {
       path: '/layout',
       name: 'layout',
-      component: () => import('../layout/index.vue' /* webpackchunkname: admin.layout */),
+      component: () => import('../layout/Index.vue' /* webpackchunkname: admin.layout */),
       meta: {
         title: '页面骨架'
       }
