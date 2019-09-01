@@ -1,13 +1,13 @@
 <template>
   <div class="body">
-<!--    <top-info/>-->
+    <!--    <top-info/>-->
     <left-menu/>
     <right-content/>
   </div>
 </template>
 
 <script>
-  // imort {scrollbar} from 'element-ui'
+  import axios from 'axios'
   // import TopInfo from './TopInfo'
   import LeftMenu from './LeftMenu'
   import RightContent from './RightContent'
@@ -25,6 +25,15 @@
         a: 1,
         b: 2
       }
+    },
+    mounted() {
+      axios.post('/login', {
+        name: 111,
+        password: 2222
+      })
+        .then((data) => {
+          console.log(data)
+        })
     }
   }
 </script>

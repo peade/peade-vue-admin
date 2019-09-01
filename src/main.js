@@ -4,7 +4,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import App from './App.vue'
 import router from './router/index'
-
+import mock from './mockjs/index'
+//
+mock()
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
