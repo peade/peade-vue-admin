@@ -6,6 +6,18 @@ let mock = function () {
     console.log(options)
     return options
   })
+  Mock.mock(/\/urlList\??[^?]*/, 'get',[{
+    name: 'html',
+    icon: 'el-icon-postcard',
+    url: '#/html',
+    child: [
+      {
+        name: 'address',
+        icon: 'el-icon-location',
+        url: '/html/address'
+      }
+    ]
+  }])
 }
 
 export default mock

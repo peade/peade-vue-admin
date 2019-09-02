@@ -6,96 +6,27 @@
       @open="handleOpen"
       @close="handleClose"
     >
-      <Submenu index="1">
+      <Submenu :index="JSON.stringify(item)" v-for="item in list" :key="JSON.stringify(item)">
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
+          <i :class="item.icon"></i><span>{{item.name}}</span>
         </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="1-1">选项1</menu-item>
-          <menu-item index="1-2">选项1</menu-item>
-          <menu-item index="1-3">选项1</menu-item>
-          <menu-item index="1-4">选项1</menu-item>
-          <menu-item index="1-5">选项1</menu-item>
-        </MenuItemGroup>
-      </Submenu>
-      <Submenu index="2">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="2-1">选项1</menu-item>
-          <menu-item index="2-2">选项1</menu-item>
-          <menu-item index="2-3">选项1</menu-item>
-          <menu-item index="2-4">选项1</menu-item>
-          <menu-item index="2-5">选项1</menu-item>
-        </MenuItemGroup>
-      </Submenu>
-      <Submenu index="3">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="3-1">选项1</menu-item>
-          <menu-item index="3-2">选项1</menu-item>
-          <menu-item index="3-3">选项1</menu-item>
-          <menu-item index="3-4">选项1</menu-item>
-          <menu-item index="3-5">选项1</menu-item>
-        </MenuItemGroup>
-      </Submenu>
-      <Submenu index="4">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="4-1">选项1</menu-item>
-          <menu-item index="4-2">选项1</menu-item>
-          <menu-item index="4-3">选项1</menu-item>
-          <menu-item index="4-4">选项1</menu-item>
-          <menu-item index="4-5">选项1</menu-item>
-        </MenuItemGroup>
-      </Submenu>
-      <Submenu index="5">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="5-1">选项1</menu-item>
-          <menu-item index="5-2">选项1</menu-item>
-          <menu-item index="5-3">选项1</menu-item>
-          <menu-item index="5-4">选项1</menu-item>
-          <menu-item index="5-5">选项1</menu-item>
-        </MenuItemGroup>
-      </Submenu>
-      <Submenu index="6">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItemGroup>
-          <template slot="title">分组一</template>
-          <menu-item index="6-1">选项1</menu-item>
-          <menu-item index="6-2">选项1</menu-item>
-          <menu-item index="6-3">选项1</menu-item>
-          <menu-item index="6-4">选项1</menu-item>
-          <menu-item index="6-5">选项1</menu-item>
-        </MenuItemGroup>
+        <menu-item-group>
+          <template slot="title">title</template>
+          <menu-item :index="JSON.stringify(child)" v-for="child in item.child" :key="JSON.stringify(child)">
+            <i :class="child.icon"></i>
+            <router-link :to="child.url">{{child.name}}</router-link>
+          </menu-item>
+        </menu-item-group>
+
       </Submenu>
     </Menu>
+
   </div>
 
 </template>
 
 <script>
+  import ajax from '../util/ajax'
   import {Menu, MenuItem, MenuItemGroup, Submenu} from 'element-ui'
 
   export default {
@@ -112,7 +43,9 @@
     props: {},
 
     data() {
-      return {}
+      return {
+        list: []
+      }
     },
 
     computed: {},
@@ -122,7 +55,19 @@
     created() {
     },
 
-    mounted() {
+    async mounted() {
+      console.log(this)
+      try {
+        this.list = await ajax.get({
+          url: '/urlList???',
+          params: {
+            token: 'logined'
+          }
+        })
+      } catch (err) {
+        this.$message(err)
+        // Message(err)
+      }
     },
 
     destroyed() {
@@ -150,7 +95,8 @@
     flex-shrink: 0;
     @include scrollbar;
   }
-  .aside-menu{
+
+  .aside-menu {
     min-height: 100%;
     /*padding-top: 50px;*/
   }

@@ -1,8 +1,8 @@
 <template>
   <header class="top-info">
-    <div>peade Admin</div>
+    <div><i class="el-icon-s-unfold"></i></div>
     <div>
-      <span class="el-icon-user-solid"></span>
+      <span class="el-icon-user-solid"></span><span>peade Admin</span>
     </div>
   </header>
 </template>
@@ -38,8 +38,9 @@
 </script>
 
 <style lang="scss" scoped>
+
   .top-info {
-    position: fixed;
+    position: absolute;
     height: 50px;
     width: 100%;
     right: 0;
