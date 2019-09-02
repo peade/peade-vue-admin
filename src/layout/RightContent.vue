@@ -2,6 +2,8 @@
   <div class="right-body">
     <top-info/>
     <div class="body-content">
+      <div>{{navCollapse}}</div>
+      <button @click="updateCollapse()">切换collapse</button>
       <router-view></router-view>
     </div>
     <bottom-foot/>
@@ -9,6 +11,7 @@
 </template>
 
 <script>
+  import {mapState, mapMutations} from 'vuex'
   import TopInfo from './TopInfo'
   import BottomFoot from './BottomFoot'
 
@@ -27,7 +30,11 @@
       return {}
     },
 
-    computed: {},
+    computed: {
+      ...mapState('frame', {
+        navCollapse: (state) => state.navCollapse
+      })
+    },
 
     watch: {},
 
@@ -40,7 +47,9 @@
     destroyed() {
     },
 
-    methods: {}
+    methods: {
+      ...mapMutations('frame', ['updateCollapse'])
+    }
   }
 </script>
 

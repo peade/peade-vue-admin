@@ -4,6 +4,8 @@ import Vue from 'vue'
 import {Loading, Notification, Message, MessageBox} from 'element-ui'
 import App from './App.vue'
 import router from './router/index'
+import store from './store'
+
 import mock from './mockjs/index'
 //
 mock()
@@ -23,5 +25,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
